@@ -1,0 +1,84 @@
+{
+  "name": "twitch",
+  "version": "1.0.0",
+  "description": "twitch",
+  "main": "index.js",
+  "productName": "twitch",
+  "scripts": {
+    "start": "electron .",
+    "build:osx": "electron-builder --mac",
+    "build:linux": "npm run build:linux32 && npm run build:linux64",
+    "build:linux32": "electron-builder --linux --ia32",
+    "build:linux64": "electron-builder --linux --x64",
+    "build:win": "npm run build:win32 && npm run build:win64",
+    "build:win32": "electron-builder --win --ia32",
+    "build:win64": "electron-builder --win --x64"
+  },
+  "build": {
+    "productName": "twitch",
+    "appId": "twitch.app",
+    "asar": true,
+    "files": [
+      "index.js",
+      "preload.js",
+      "favicon.ico"
+    ],
+    "protocols": {
+      "name": "twitch",
+      "schemes": [
+        "twitch"
+      ]
+    },
+    "mac": {
+      "target": [
+        "default"
+      ],
+      "icon": "./favicon.ico"
+    },
+    "dmg": {
+      "title": "twitch",
+      "icon": "./favicon.ico"
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis"
+      ],
+      "icon": "./favicon.ico"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "zip",
+        "tar.gz"
+      ],
+      "icon": "./favicon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": false,
+      "installerLanguages": [
+        "en_US",
+        "ko_KR"
+      ],
+      "language": "1042"
+    },
+    "directories": {
+      "buildResources": "./resources/installer/",
+      "output": "./dist/",
+      "app": "."
+    }
+  },
+  "author": "tkrmagid",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^23.2.1",
+    "electron-builder": "^24.1.2"
+  },
+  "dependencies": {
+    "@cliqz/adblocker-electron": "^1.26.3",
+    "electron-window-state": "^5.0.3"
+  }
+}
